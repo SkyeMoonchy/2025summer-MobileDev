@@ -1,0 +1,35 @@
+<view class="container">
+  <!-- 播放器 -->
+  <video
+    id="myVideo"
+    class="video"
+    src="{{src}}"
+    controls
+    autoplay="{{autoplay}}"
+    enable-danmu="true"
+    danmu-btn="true"
+    show-play-btn="true"
+    show-center-play-btn="true"
+    bindplay="handlePlay"
+    bindpause="handlePause"
+    bindended="handleEnded"
+  ></video>
+
+  <!-- 弹幕输入 -->
+  <view class="danmuArea">
+    <input class="danmuInput" type="text" placeholder="请输入弹幕内容" bindinput="getDanmu" value="{{danmuTxt}}" />
+    <button class="danmuBtn" bind:tap="sendDanmu">发送弹幕</button>
+  </view>
+
+  <!-- 视频列表 -->
+  <view class="videoList">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="videoBar" data-url="{{item.videoUrl}}" bind:tap="playVideo">
+        <image class="playIcon" src="/images/play.png" mode="widthFix" />
+        <view class="meta">
+          <text class="title">{{item.title}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
